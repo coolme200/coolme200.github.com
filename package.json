@@ -1,0 +1,16 @@
+{
+  "name": "coolme200.github.com",
+  "description": "tangyao(coolme200)'s page",
+  "version": "0.0.0",
+  "keywords": ["tangyao", "coolme200"],
+  "author": "tangyao <tangyao@taobao.com>",
+  "scripts": {
+    "start": "node",
+    "test": "make test"
+  },
+  "dependencies": {
+    "markdown": "0.5.0"
+  },
+  "main": "index.html",
+  "engines": { "node": "0.8" }
+}

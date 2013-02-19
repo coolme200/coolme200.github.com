@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>PieBar</title>
+  <script src="http://g.tbcdn.cn/kissy/k/1.3.1/kissy-min.js" charset="utf-8"></script>
+  <!--script src="../js/raphael-min.js" charset="utf-8"></script-->
+  <script src="data.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="http://g.tbcdn.cn/kissy/k/1.3.0/css/dpl/base-min.css">
+  <style type="text/css">
+      #holder {
+        background: #f0f0f0;
+        width: 900px;
+        height: 800px;
+        position: relative;
+      }
+    </style>
+</head>
+<body>
+  <div id="holder"></div>
+<script>
+  var S = KISSY;
+  S.Config.debug = true;
+  if (S.Config.debug) {
+    var srcPath = "./";
+    S.config({
+      packages:[
+        {
+          name:"chart",
+          path:srcPath,
+          charset:"utf-8",
+          ignorePackageNameInUri:true
+        }
+    
+      ]
+    });
+  }
+
+  S.use('chart/pie_bar', function (S, PieBar) {
+
+     // default call pie.render();
+     S.ready(function () {
+      // ------ mock data start
+      var data = [];
+      for (var i = 0; i < 90; i++) {
+        data.push(tdata[i]);
+      }
+      // ----- mock data end
+
+      var pie = new PieBar({
+        holder: 'holder',
+        data: data,
+        mapping: {
+          label: {
+            color: '#666666',
+            hover: '#000000'
+          },
+          pie: {
+            name: '流量',
+            attr: 'pv',
+            color: '#8cc63e', 
+            hover: '#066839',
+            defaultColor: '#d3d3d3',
+            defaultHover: '#b1d747'
+          },
+          bar1: {
+            name: '成交金额',
+            attr: 'gmv',
+            color: '#f7941d',
+            hover: '#ef3e38'
+          },
+          bar2: {
+            name: '用户',
+            attr: 'uv',
+            color: '#00adef',
+            hover: '#1176ba'
+          }
+        },
+        onCenterClick: function (center) {
+          console.log(center);
+          // 点击中心
+          // TODO: 弹出窗
+        },
+        onLeafClick: function (leaf) {
+          // ----- mock data start
+          for (var i = 0; i < data.length; i++ ) {
+            if (data[i].id === leaf.id) {
+              data[i].type = 1;
+            } else {
+              data[i].type = 0;
+            }
+          }
+          // ----- mock data end
+
+          // TODO: ajax request data for build
+          pie.rebuild({
+            data: data  
+          });
+          // console.log(leaf);
+        }
+       });
+     });
+  });
+</script>
+</body>
+</html>
