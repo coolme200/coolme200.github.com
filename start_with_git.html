@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8">
+    <title>Tangyao's Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tangyao's Page">
+    <meta name="author" content="tangyao@alibaba-inc.com">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <!-- Le styles -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/justified-nav.css" rel="stylesheet">
+    <link href="/assets/css/docs.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/assets/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="container">
+
+      <h2>Step 0</h2>
+<blockquote>
+<p>下载客户端 <a href="https://help.github.com/articles/set-up-git">https://help.github.com/articles/set-up-git</a></p>
+<p>windows 下需要安装 Git Bash命令行工具 安装完后操作同 linux</p>
+</blockquote>
+<h2>Step 1</h2>
+<blockquote>
+<p>安装完成后设置账号，邮箱,提交的时候显示的名称。</p>
+</blockquote>
+<pre><code>$ git config --global user.name &quot;tangyao&quot;
+$ git config --global user.email &quot;tangyao@taobao.com&quot;</code></pre>
+<blockquote>
+<p>查看设置情况</p>
+</blockquote>
+<pre><code>$ git config --get user.name
+$ git config --get user.email</code></pre>
+<h2>Step 2</h2>
+<blockquote>
+<p>创建 sshkey用于连接服务器的时候认证</p>
+</blockquote>
+<pre><code>$ cd .ssh</code></pre>
+<blockquote>
+<p>保证. ssh目录下名称为id_rsa, id_rsa.pub的文件是唯一的，如果已经存在的话先备份一下。</p>
+</blockquote>
+<pre><code class="lang-bash">$ mkdir back_rsa
+$ cp id_rsa* back_rsa
+$ rm id_rsa*
+$ ssh-keygen -t rsa -C &quot;tangyao@taobao.com&quot;</code></pre>
+<blockquote>
+<p>复制id_rsa.pub中的内容添加到 github中</p>
+<p>登陆 github系统。点击右上角的 Account Settings---&gt;SSH Public keys ---&gt; add another public keys</p>
+<p>把你本地生成的密钥复制到里面（key文本框中）， 点击 add key 就ok了</p>
+<p>测试是否连接成功</p>
+<p>复制的key里面带空行的样子 （vi取到的可能有问题）</p>
+</blockquote>
+<pre><code>$ ssh﻿ git@github.com  
+
+echo: Hi coolme200/top! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></pre>
+<h2>Step 3</h2>
+<blockquote>
+<p>创建工作目录</p>
+</blockquote>
+<pre><code>$ mkdir helloworld
+$ cd helloworld (到workspace的项目目录下执行)</code></pre>
+<blockquote>
+<p>初始化，否则这不会被认为是一个 git项目</p>
+</blockquote>
+<p>$ git init</p>
+<blockquote>
+<p>设置项目远程版本库地址</p>
+<p>例1（适用 github）</p>
+</blockquote>
+<pre><code>$ git remote add origin master http://github.com/coolme200/hello</code></pre>
+<blockquote>
+<p>例2（适用 gitlab）</p>
+</blockquote>
+<pre><code>$ git remote add origin master git@gitlab.taobao.ali.com:varworld.git</code></pre>
+<blockquote>
+<p>错误提示：</p>
+<p><code>fatal: remote origin already exists.</code></p>
+<p>解决办法：</p>
+</blockquote>
+<pre><code>$ git remote rm origin</code></pre>
+<h2>Step 4</h2>
+<blockquote>
+<p>获取代码</p>
+</blockquote>
+<pre><code>$ git pull origin master</code></pre>
+<h2>Step 5</h2>
+<blockquote>
+<p>修改代码</p>
+<p>提交代码至本地版本库</p>
+</blockquote>
+<pre><code>$ git add test.js
+$ git commit -m &#39;commit&#39;</code></pre>
+<h2>Step 6</h2>
+<blockquote>
+<p>提交至服务器</p>
+</blockquote>
+<pre><code>$ git push origin master</code></pre>
+<blockquote>
+<p>错误提示：</p>
+<p><code>error: failed to push som refs to ........</code></p>
+<p>解决办法,先pull 下来 再push 上去</p>
+</blockquote>
+<pre><code>$ git pull origin master
+ ex:1
+$ git push origin
+default to pushing only the current branch to &lt;code&gt; origin &lt;/code&gt; use &lt;code&gt; git config remote.origin.push HEAD &lt;/code&gt;.</code></pre>
+<h2>Setp 7</h2>
+<blockquote>
+<p> 切换到master</p>
+</blockquote>
+<pre><code>$ git checkout master</code></pre>
+<blockquote>
+<p>fetch最新代码</p>
+</blockquote>
+<pre><code>$ git fetch origin master</code></pre>
+<blockquote>
+<p>显示分支列表，包括远程。</p>
+</blockquote>
+<pre><code>$ git branch -a
+$ git fetch -p origin</code></pre>
+<blockquote>
+<p>创建分支new1</p>
+</blockquote>
+<pre><code>$ git branch new1</code></pre>
+<blockquote>
+<p>提交修改内容到分支new1</p>
+</blockquote>
+<pre><code>$ git push origin new1</code></pre>
+<blockquote>
+<p>切换到主干master</p>
+</blockquote>
+<pre><code>$ git checkout master</code></pre>
+<blockquote>
+<p>将主干master-new1合并</p>
+</blockquote>
+<pre><code>$ git merge master new1</code></pre>
+<blockquote>
+<p>将变更提交到主干master</p>
+</blockquote>
+<pre><code>$ git push origin master</code></pre>
+<blockquote>
+<p>切换到主干master</p>
+</blockquote>
+<pre><code>$ git checkout master</code></pre>
+<blockquote>
+<p>删除分支</p>
+</blockquote>
+<pre><code>$ git branch -d new1</code></pre>
+<blockquote>
+<p>删除服务器分支</p>
+</blockquote>
+<pre><code>$ git push origin :new1</code></pre>
+
+
+      <!-- Site footer -->
+      <div class="footer">
+        <p>&copy; Tangyao 2013</p>
+      </div>
+
+    </div> <!-- /container -->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+  </body>
+</html>

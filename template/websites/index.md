@@ -58,7 +58,8 @@
 > [loading在线生成](http://preloaders.net/) |
 
 >> #### GIT
->> [sourcetree](http://sourcetreeapp.com)
+>> [sourcetree](http://sourcetreeapp.com) |
+>> [开始使用GIT](/start_with_git.html)
 
 
 ***

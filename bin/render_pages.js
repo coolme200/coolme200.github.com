@@ -1,6 +1,6 @@
 var path = require('path');
 var fs = require('fs');
-var md = require('markdown').markdown;
+var md = require('marked');
 var ejs = require('ejs');
 
 var root = path.resolve(__dirname, '../template/');
@@ -23,7 +23,7 @@ function processDir(root) {
         return;
       }
       var str = fs.readFileSync(filePath, 'utf8');
-      var convert = md.toHTML(str);
+      var convert = md(str);
       var render = ejs.render(layout, {
       	body: convert
       });
