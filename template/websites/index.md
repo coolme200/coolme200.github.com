@@ -33,6 +33,7 @@
 > [CSS 选择器](http://www.w3schools.com/cssref/css_selectors.asp) |
 > [如何生成渐进式JPEG](http://scriptogr.am/bee/post/how-to-make-progressive-jpeg) |
 > [前端开发工程师如何提升自己](http://w3ctech.com/p/1395) |
+> [页面中地址不使用http & https前缀](http://www.paulirish.com/2010/the-protocol-relative-url/)
 
 *** 
 > ### 类库
