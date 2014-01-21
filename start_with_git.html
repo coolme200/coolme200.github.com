@@ -85,6 +85,14 @@ $ cd helloworld (到workspace的项目目录下执行)</code></pre>
 <p>解决办法：</p>
 </blockquote>
 <pre><code>$ git remote rm origin</code></pre>
+<p><strong>注意</strong></p>
+<blockquote>
+<p>1、先输入  <code>$ git remote rm origin</code></p>
+<p>2、再输入  <code>$ git remote add origin git@github.com:djqiang/gitdemo.git</code> 就不会报错了！</p>
+<p>3、如果输入 <code>$ git remote rm origin</code> 还是报错的话，<code>error: Could not remove config section &#39;remote.origin&#39;</code>. 我们需要修改gitconfig文件的内容</p>
+<p>4、找到你的github的安装路径，我的是<code>C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ca477551eeb4aea0e4ae9fcd3358bd96720bb5c8\etc</code></p>
+<p>5、找到一个名为<code>gitconfig</code>的文件，打开它把里面的<code>[remote &quot;origin&quot;]</code>那一行删掉就好了！</p>
+</blockquote>
 <h2>Step 4</h2>
 <blockquote>
 <p>获取代码</p>

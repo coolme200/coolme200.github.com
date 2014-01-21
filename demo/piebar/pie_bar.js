@@ -252,8 +252,8 @@ KISSY.add(function (S, Node,Base) {
         
         //     
         var _r = item[0] * (_pie_r - _cr) + _cr;
-        var p = sector(_pie_r, angle, angle + angleplus, {fill: _mapping.pie.defaultColor, stroke: _mapping.pie.defaultColor, "stroke-width": 0.05});
-        var _p = sector(_r, angle, angle + angleplus, {fill: _mapping.pie.color, stroke: "#000", "stroke-width": 0.05});
+        var p = sector(_pie_r, angle, angle + angleplus - 0.01, {fill: _mapping.pie.defaultColor, stroke: _mapping.pie.defaultColor, "stroke-width": 0.05});
+        var _p = sector(_r, angle, angle + angleplus - 0.01, {fill: _mapping.pie.color, stroke: "#000", "stroke-width": 0.05});
         
         var bar1Height = _bar_max * item[1];
         var bar2Height = _bar_max * item[2];

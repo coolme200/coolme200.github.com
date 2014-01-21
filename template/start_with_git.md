@@ -91,6 +91,18 @@ $ git remote add origin master git@gitlab.taobao.ali.com:varworld.git
 ```
 $ git remote rm origin
 ```
+__注意__
+
+> 1、先输入  `$ git remote rm origin`
+
+> 2、再输入  `$ git remote add origin git@github.com:djqiang/gitdemo.git` 就不会报错了！
+
+> 3、如果输入 `$ git remote rm origin` 还是报错的话，`error: Could not remove config section 'remote.origin'`. 我们需要修改gitconfig文件的内容
+
+> 4、找到你的github的安装路径，我的是`C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ca477551eeb4aea0e4ae9fcd3358bd96720bb5c8\etc`
+
+> 5、找到一个名为`gitconfig`的文件，打开它把里面的`[remote "origin"]`那一行删掉就好了！
+
 
 ## Step 4
 
