@@ -1,45 +1,8 @@
+---
+layout: default
+title: Home
+---
 
-<!DOCTYPE html>
-<html lang="zh_CN">
-  <head>
-    <meta charset="utf-8">
-    <title>Tangyao's Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tangyao's Page">
-    <meta name="author" content="tangyao@alibaba-inc.com">
-    <link rel="shortcut icon" href="" type="image/x-icon">
-    <!-- Le styles -->
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/css/justified-nav.css" rel="stylesheet">
-    <link href="/assets/css/docs.css" rel="stylesheet">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="/assets/js/html5shiv.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
-    <div class="container">
-
-      <h1>Tangyao&#39;s Page</h1>
-<h2>Charts</h2>
-<p><a href="/demo/piebar/">PieBar</a></p>
-<h2>网址收藏</h2>
-<p><a href="/websites">网址导航</a></p>
-<h2>摄影</h2>
-<p><a href="http://tangyao.pp.163.com/">网易相册</a></p>
-
-
-      <!-- Site footer -->
-      <div class="footer">
-        <p>&copy; Tangyao 2013</p>
-      </div>
-
-    </div> <!-- /container -->
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000118374'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000118374%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
-  </body>
-</html>
+{% assign page = site.posts.first %}
+{% assign content = page.content %}
+{% include post.html %}

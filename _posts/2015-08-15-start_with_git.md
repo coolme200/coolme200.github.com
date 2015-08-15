@@ -1,3 +1,11 @@
+---
+layout: post
+title: Start with Git
+cover:
+date: 2015-08-15 20:00:00
+categories: posts
+---
+
 ## Step 0
 
 > 下载客户端 https://help.github.com/articles/set-up-git
