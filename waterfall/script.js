@@ -1,13 +1,4 @@
 var isGithubDemo = isGithubDemo || false;  // This is for GitHub demo only. Remove it in your project
-var images = [
-  {name: 'qiandaohu', title: '千岛湖夜景', height: 210},
-  {name: '1916563116424599827', title: '非洲菊', height: 500},
-  {name: '6597798742866588318', title: '郁金香', height: 210},
-  {name: '1871527120151098531', title: '猫', height: 210},
-  {name: '2504001392819177967', title: '蜜蜂与花', height: 210},
-  {name: '2626443007688291683', title: '花', height: 210},
-  {name: '672162244402598372', title: '西塘夜景', height: 210},
-];
 void function(window, document, undefined) {
 
   // ES5 strict mode
@@ -158,7 +149,10 @@ void function(window, document, undefined) {
     var fragment = document.createDocumentFragment();
     var cells = [];
     for(var j = 0; j < num; j++) {
-      var index = Math.floor(Math.random() * 10) + 1;
+      var index = Math.floor(Math.random() * images.length);
+      if (index >= images.length) {
+        index = images.length - 1;
+      }
       var img = images[index];
       if (!img || doneMap[index]) {
         continue;
@@ -176,7 +170,7 @@ void function(window, document, undefined) {
       loading = false;
       cellsContainer.appendChild(fragment);
       adjustCells(cells);
-    }, 1000);
+    }, 800);
   };
 
   // Position the newly appended cells and update array of column heights.
