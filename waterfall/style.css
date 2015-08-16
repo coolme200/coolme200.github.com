@@ -109,6 +109,7 @@ h1 {
   display: block;
   vertical-align: bottom;
   border: 0 none;
+  border-radius: 2px;
 }
 
 .cell h2 {
