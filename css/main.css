@@ -49,7 +49,9 @@ a:hover {
 /*
 /*****************************************************************************/
 #logo {
-  max-width: 128px;
+  height: 125px;
+  width: 120px;
+  border-radius: 2px;
 }
 
 .posts a {

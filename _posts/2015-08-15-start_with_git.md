@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Start with Git
-cover:
+cover: 0049eoixgy6E10Nxi6v23&690.jpeg
 date: 2015-08-15 20:00:00
 categories: posts
 ---
