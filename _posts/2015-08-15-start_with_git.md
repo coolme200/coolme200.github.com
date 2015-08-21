@@ -2,6 +2,7 @@
 layout: post
 title: Start with Git
 cover: 0049eoixgy6E10Nxi6v23&690.jpeg
+coverStyle: height:150px;width:300px;
 date: 2015-08-15 20:00:00
 categories: posts
 ---
@@ -58,7 +59,7 @@ $ ssh-keygen -t rsa -C "tangyao@taobao.com"
 > 复制的key里面带空行的样子 （vi取到的可能有问题）
 
 ```
-$ ssh﻿ git@github.com  
+$ ssh﻿ git@github.com
 
 echo: Hi coolme200/top! You've successfully authenticated, but GitHub does not provide shell access.
 ```
@@ -221,4 +222,40 @@ $ git branch -d new1
 
 ```
 $ git push origin :new1
+```
+
+高级用法
+---
+
+1. cherry-pick
+
+```
+# 切换到源分支查看 log 得到 commit 的 hash 值
+$ git log --graph --oneline --all
+
+# |\  
+# | * 45a3e93 c1
+# | * 3c11b39 c2
+# | * 762a6bb c3
+
+# 切换到目标分支执行如下命令，45a3e93 的变更就会被 pick 到目标分支中
+$ git cherry-pick 45a3e93
+
+```
+
+2. rebase 合并 commit
+
+```
+$ git rebase -i HEAD~2
+$ git rebase --continue
+$ git rebase --abort
+```
+
+3. fork 项目 upstream
+
+```
+$ git remote add upstream git@github.com:node-modules/byte.git
+$ git remote update upstream
+# 其他操作均跟通常库操作方法一致
+$ git rebase upstream/${branch name}
 ```
