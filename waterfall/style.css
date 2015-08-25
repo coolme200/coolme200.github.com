@@ -110,7 +110,7 @@ h1 {
   display: block;
   vertical-align: bottom;
   border: 0 none;
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 .cell h2 {

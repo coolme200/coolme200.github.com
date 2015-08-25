@@ -4,8 +4,8 @@ void function(window, document, undefined) {
   // ES5 strict mode
   "user strict";
 
-  var CELL_WIDTH = 300;
-  var MIN_COLUMN_COUNT = 3; // minimal column count
+  var CELL_WIDTH = 500;
+  var MIN_COLUMN_COUNT = 2; // minimal column count
   var COLUMN_WIDTH = CELL_WIDTH + 2 * 2;   // cell width: 190, padding: 14 * 2, border: 1 * 2
   var CELL_PADDING = 26;    // cell padding: 14 + 10, border: 1 * 2
   var GAP_HEIGHT = 25;      // vertical gap between cells
@@ -142,7 +142,7 @@ void function(window, document, undefined) {
   images.sort(function() {return 0.5 - Math.random()})
   // Fake mode, only for GitHub demo. Delete this function in your project.
   var appendCellsDemo = function(num) {
-    num = 3;
+    num = 2;
     if(loading || imgIndex >= images.length - 1) {
       document.getElementById('loader').style.display = 'hidden';
       // Avoid sending too many requests to get new cells.
