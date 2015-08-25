@@ -6,9 +6,9 @@ void function(window, document, undefined) {
 
   var CELL_WIDTH = 300;
   var MIN_COLUMN_COUNT = 3; // minimal column count
-  var COLUMN_WIDTH = CELL_WIDTH + 2 * 2 + 1 * 2;   // cell width: 190, padding: 14 * 2, border: 1 * 2
+  var COLUMN_WIDTH = CELL_WIDTH + 2 * 2;   // cell width: 190, padding: 14 * 2, border: 1 * 2
   var CELL_PADDING = 26;    // cell padding: 14 + 10, border: 1 * 2
-  var GAP_HEIGHT = 15;      // vertical gap between cells
+  var GAP_HEIGHT = 25;      // vertical gap between cells
   var GAP_WIDTH = 0;       // horizontal gap between cells
   var THRESHOLD = 2000;     // determines whether a cell is too far away from viewport (px)
 
@@ -138,26 +138,24 @@ void function(window, document, undefined) {
     loading = true;
     xhrRequest.send(null);
   };
-  var doneMap = {};
+  var imgIndex = 0;
+  images.sort(function() {return 0.5 - Math.random()})
   // Fake mode, only for GitHub demo. Delete this function in your project.
   var appendCellsDemo = function(num) {
     num = 3;
-    if(loading) {
+    if(loading || imgIndex >= images.length - 1) {
+      document.getElementById('loader').style.display = 'hidden';
       // Avoid sending too many requests to get new cells.
       return;
     }
     var fragment = document.createDocumentFragment();
     var cells = [];
     for(var j = 0; j < num; j++) {
-      var index = Math.floor(Math.random() * images.length);
-      if (index >= images.length) {
-        index = images.length - 1;
-      }
-      var img = images[index];
-      if (!img || doneMap[index]) {
+      if (imgIndex >= images.length - 1) {
         continue;
       }
-      doneMap[index] = 1;
+      var img = images[imgIndex++];
+      // pick one and remove it
       var cell = document.createElement('div');
       cell.className = 'cell pending';
       cell.tagLine = img.name;
@@ -213,7 +211,7 @@ void function(window, document, undefined) {
     managing = true;
 
     var cells = cellsContainer.children;
-    var viewportTop = (document.body.scrollTop || document.documentElement.scrollTop) - cellsContainer.offsetTop;
+    var viewportTop = (document.getElementById('home').scrollTop || document.documentElement.scrollTop) - cellsContainer.offsetTop;
     var viewportBottom = (window.innerHeight || document.documentElement.clientHeight) + viewportTop;
 
     // Remove cells' contents if they are too far away from the viewport. Get them back if they are near.
@@ -235,6 +233,7 @@ void function(window, document, undefined) {
 
     // If there's space in viewport for a cell, request new cells.
     if(viewportBottom > getMinVal(columnHeights)) {
+    // if (true) {
       // Remove the if/else statement in your project, just call the appendCells function.
       if(isGithubDemo) {
         appendCellsDemo(columnCount);
@@ -267,7 +266,7 @@ void function(window, document, undefined) {
     // Add other event listeners.
     addEvent(cellsContainer, 'click', updateNotice);
     addEvent(window, 'resize', delayedResize);
-    addEvent(window, 'scroll', delayedScroll);
+    addEvent(document.getElementById('home'), 'scroll', delayedScroll);
 
     // Initialize array of column heights and container width.
     columnCount = getColumnCount();

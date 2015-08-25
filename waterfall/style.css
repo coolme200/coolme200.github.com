@@ -73,7 +73,8 @@ h1 {
 .cell {
   background: #fff;
   border: 1px solid #fff;
-  padding: 4px 2px;
+  /*padding: 4px 2px;*/
+  /*padding-bottom: 4px;*/
   width: 300px;
   position: absolute;
 }
@@ -102,7 +103,7 @@ h1 {
 }
 
 .cell p {
-  margin: 0 0 10px;
+  /*margin: 0 0 10px;*/
 }
 
 .cell img {
@@ -113,6 +114,7 @@ h1 {
 }
 
 .cell h2 {
+  display: none;
   font-size: 12px;
   margin: 0;
   height: 14px;
