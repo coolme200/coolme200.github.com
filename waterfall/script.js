@@ -78,21 +78,6 @@ void function(window, document, undefined) {
     return key;
   };
 
-  // Pop notice tag after user liked or marked an item.
-  var updateNotice = function(event) {
-    clearTimeout(noticeDelay);
-    var e = event || window.event;
-    var target = e.target || e.srcElement;
-    if(target.tagName == 'SPAN') {
-      var targetTitle = target.parentNode.tagLine;
-      noticeContainer.innerHTML = (target.className == 'like' ? 'Liked ' : 'Marked ') + '<strong>' + targetTitle + '</strong>';
-      noticeContainer.className = 'on';
-      noticeDelay = setTimeout(function() {
-        noticeContainer.className = 'off';
-      }, 2000);
-    }
-  };
-
   // Calculate column count from current page width.
   var getColumnCount = function() {
     return MIN_COLUMN_COUNT;
@@ -168,7 +153,7 @@ void function(window, document, undefined) {
       loading = false;
       cellsContainer.appendChild(fragment);
       adjustCells(cells);
-    }, 800);
+    }, 400);
   };
 
   // Position the newly appended cells and update array of column heights.
@@ -213,24 +198,6 @@ void function(window, document, undefined) {
     var cells = cellsContainer.children;
     var viewportTop = (document.getElementById('home').scrollTop || document.documentElement.scrollTop) - cellsContainer.offsetTop;
     var viewportBottom = (window.innerHeight || document.documentElement.clientHeight) + viewportTop;
-
-    // Remove cells' contents if they are too far away from the viewport. Get them back if they are near.
-    // TODO: remove the cells from DOM should be better :<
-    for(var i = 0, l = cells.length; i < l; i++) {
-      if((cells[i].offsetTop - viewportBottom > THRESHOLD) || (viewportTop - cells[i].offsetTop - cells[i].offsetHeight > THRESHOLD)) {
-        if(cells[i].className === 'cell ready') {
-          cells[i].fragment = cells[i].innerHTML;
-          cells[i].innerHTML = '';
-          cells[i].className = 'cell shadow';
-        }
-      } else {
-        if(cells[i].className === 'cell shadow') {
-          cells[i].innerHTML = cells[i].fragment;
-          cells[i].className = 'cell ready';
-        }
-      }
-    }
-
     // If there's space in viewport for a cell, request new cells.
     if(viewportBottom > getMinVal(columnHeights)) {
     // if (true) {
@@ -264,7 +231,6 @@ void function(window, document, undefined) {
   // Initialize the layout.
   var init = function() {
     // Add other event listeners.
-    addEvent(cellsContainer, 'click', updateNotice);
     addEvent(window, 'resize', delayedResize);
     addEvent(document.getElementById('home'), 'scroll', delayedScroll);
 
