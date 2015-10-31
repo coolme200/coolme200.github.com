@@ -22,7 +22,7 @@ void function(window, document, undefined) {
 
   var noticeContainer = document.getElementById('notice');
   var cellsContainer = document.getElementById('cells');
-  var cellTemplate = '<p><a href="#"><img src="/images/photos/{{src}}.jpg" height="{{height}}" width="{{width}}" /></a></p><h2><a href="#">{{title}}</a></h2>';
+  var cellTemplate = '<p><a href="#"><img src="{{src}}" height="{{height}}" width="{{width}}" /></a></p><h2><a href="#">{{title}}</a></h2>';
 
   // Cross-browser compatible event handler.
   var addEvent = function(element, type, handler) {
@@ -160,7 +160,7 @@ void function(window, document, undefined) {
       cell.className = 'cell pending';
       cell.tagLine = img.name;
       cells.push(cell);
-      front(cellTemplate, { 'title': img.title, 'src': img.name, 'height': img.height, 'width': CELL_WIDTH }, cell);
+      front(cellTemplate, { 'title': img.title, 'src': img.name.indexOf('http://') === -1 ? ('/images/photos/' + img.name + '.jpg') : img.name, 'height': img.height, 'width': CELL_WIDTH }, cell);
       fragment.appendChild(cell);
     }
     // Faking network latency.
