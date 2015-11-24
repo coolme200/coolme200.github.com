@@ -26,5 +26,6 @@ var images = [
   {name: 'http://imgout.ph.126.net/48025027/DSC_0188.jpg', title: '猫', height: '320'},
   {name: 'http://imgout.ph.126.net/48025028/DSC_0238.jpg', title: '干月季', height: '320'},
   {name: 'http://imgout.ph.126.net/48025029/48025029.jpg', title: '荷花', height: '320'},
+  {name: 'http://imgout.ph.126.net/48326049/DSC_0845-2.jpg', title: '英菲尼迪', height: '320'},
   
 ];
